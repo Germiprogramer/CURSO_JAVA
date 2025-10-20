@@ -56,11 +56,12 @@ class BrandBike implements Bicycle {
 
 
 public class OrbeaBikes {
-
     public static void main(String[] args) {
 
         BrandBike orbeaBike = new BrandBike();
         orbeaBike.speedUp(30);
-        orbeaBike.printStates(;)
+        
+        orbeaBike.printStates(); 
+
     }
 }
