@@ -45,7 +45,7 @@ Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla d
 
 Una de las partes que más me costó fue entender por qué no funcionaba correctamente el cambio de idioma. El problema estaba en que el idioma por defecto de la aplicación era inglés y fue necesario ajustar correctamente los recursos para que el español fuese el idioma principal.
 
-Otra de las partes más complicadas fue la implementación de los adapters personalizados, ya que al principio resultaba difícil entender cómo se relacionaban los datos con las vistas del ListView.
+Otra de las partes más complicadas fue la implementación de los adapters, ya que al principio resultaba difícil entender cómo se relacionaban los datos con las vistas del ListView. Sin embargo, parecían necesarios para que el ListView quedase bien.
 
 ---
 
@@ -53,7 +53,7 @@ Otra de las partes más complicadas fue la implementación de los adapters perso
 
 - Mantener los datos entre ejecuciones de la aplicación.
 - Traducir también los géneros y los nombres de las películas al cambiar el idioma.  
-  Esto habría sido más sencillo si el género se hubiese implementado mediante un Spinner en lugar de un EditText, pero se optó por este último al no tener claro inicialmente cuántos géneros incluir.
+  Esto habría sido más sencillo si el género de las películas se hubiese implementado mediante un Spinner en lugar de un EditText, pero se optó por este último al no tener claro inicialmente cuántos géneros incluir.
 - Añadir la opción de eliminar películas.
 - Crear una clase específica para gestionar la base de datos en lugar de manejarla directamente desde las Activities. Se intentó implementar esta mejora, pero al no funcionar correctamente se decidió mantener la base de datos integrada en las Activities.
 
