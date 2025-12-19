@@ -1,13 +1,12 @@
 # EjFeedbackUno – Gestor de Películas
 
-Para el primer ejercicio de feedback de la asignatura se ha optado por desarrollar una aplicación Android que funcione como gestor de películas.  
-La elección de esta temática se debe a que resulta sencilla para implementar los elementos solicitados en el enunciado, como ImageView, CheckBox y ListView, dentro de un contexto claro y fácil de entender.
+Para el primer ejercicio feedback de la asignatura se ha optado por realizar una aplicación que haga de gestor de películas. La razón por la que se ha optado por esta idea es porque resultaba sencillo pensar en implementar vistas requeridas como ImageView, CheckBox o ListView bajo este contexto.
 
 ---
 
 ## Funcionalidades principales
 
-La aplicación es intencionadamente sencilla. Se trata de un simulador de gestor de películas en el que el usuario puede añadir y modificar películas de forma básica.
+La aplicación es muy simple. Se trata de un simulador de gestor de películas en el que el usuario puede añadir y modificar peliculas. 
 
 Debido a problemas detectados con la base de datos al reiniciar la aplicación —principalmente relacionados con la visualización de las imágenes añadidas desde la galería— se ha optado por limpiar la base de datos cada vez que se inicia la app y cargar un conjunto de películas por defecto.  
 Por este motivo, la aplicación no mantiene los datos entre ejecuciones y su uso es principalmente demostrativo y académico.
@@ -19,7 +18,7 @@ Por este motivo, la aplicación no mantiene los datos entre ejecuciones y su uso
 La aplicación está organizada en varias Activities:
 
 - **MainActivity**: muestra la lista principal de películas. Al iniciar la aplicación se cargan tres películas por defecto y posteriormente se muestran las películas añadidas durante la ejecución.
-- **CrearPeliculaActivity**: permite añadir o editar una película.  
+- **CrearPeliculaActivity**: permite añadir o editar una película. 
   Además de los campos básicos (título, año y género), se puede seleccionar una imagen para el póster desde la galería del dispositivo.
 - **StatsActivity**: muestra estadísticas de la aplicación, como el número total de películas, el número de películas favoritas y el número de películas por género.
 
