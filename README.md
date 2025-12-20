@@ -1,4 +1,4 @@
-# EjFeedbackUno – Gestor de Películas
+# Peliculómmetro
 
 Para el primer ejercicio feedback de la asignatura se ha optado por realizar una aplicación que haga de gestor de películas. La razón por la que se ha optado por esta idea es porque resultaba sencillo pensar en implementar vistas requeridas como ImageView, CheckBox o ListView bajo este contexto.
 
@@ -42,9 +42,11 @@ Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla d
 
 ## Partes que me han resultado más difíciles
 
-Una de las partes que más me costó fue entender por qué no funcionaba correctamente el cambio de idioma. El problema estaba en que el idioma por defecto de la aplicación era inglés y fue necesario ajustar correctamente los recursos para que el español fuese el idioma principal.
+Una de las partes que más me costó fue el tema del cambio de idioma. El problema estaba en que el idioma por defecto de la aplicación era inglés y por lo que cuando intentaba hacer un cambio a la traducción inglesa de Reino Unido (poniendo solo "en", el sistema pensaba que estaba solicitando el Locale default.
 
 Otra de las partes más complicadas fue la implementación de los adapters, ya que al principio resultaba difícil entender cómo se relacionaban los datos con las vistas del ListView. Sin embargo, parecían necesarios para que el ListView quedase bien.
+
+Además, la parte de modificar las películas también se me complico un poco, porque no me pillaba bien el peliculaId y no salía la pelicula a modificar, sino te llevaba a la pamntalla para crear una nueva.
 
 ---
 
@@ -52,9 +54,9 @@ Otra de las partes más complicadas fue la implementación de los adapters, ya q
 
 - Mantener los datos entre ejecuciones de la aplicación.
 - Traducir también los géneros y los nombres de las películas al cambiar el idioma.  
-  Esto habría sido más sencillo si el género de las películas se hubiese implementado mediante un Spinner en lugar de un EditText, pero se optó por este último al no tener claro inicialmente cuántos géneros incluir.
+  Con los géneros hubiese sido mas fácil si se hubiese elegido el campo genero como habia hecho al inicio, mediante un Spinner. Pero al final quise meter un EditText porque no sabía muy bien cuántos generos poner y porque cambie los posters default en función del género para que se pudiera meter una imagen a elección del usuario. Como hice el tema de la traduccion al final, no me di cuenta.
 - Añadir la opción de eliminar películas.
-- Crear una clase específica para gestionar la base de datos en lugar de manejarla directamente desde las Activities. Se intentó implementar esta mejora, pero al no funcionar correctamente se decidió mantener la base de datos integrada en las Activities.
+- No hay una carpeta con un archivo java aparte para la base de datos, intente hacerlo pero no me estaba saliendo bien y decidí dejar la base de datos en las Activities. 
 
 ---
 
