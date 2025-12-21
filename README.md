@@ -6,9 +6,9 @@ Para el primer ejercicio feedback de la asignatura se ha optado por realizar una
 
 ## Funcionalidades principales
 
-La aplicación es muy simple. Se trata de un simulador de gestor de películas en el que el usuario puede añadir y modificar peliculas. 
+La aplicación es muy simple. Se trata de un simulador de gestor de películas en el que el usuario puede añadir y modificar peliculas. También se pueden consultar estadísticas sencillas sobre las películas.
 
-Debido a problemas detectados con la base de datos al reiniciar la aplicación —principalmente relacionados con la visualización de las imágenes añadidas desde la galería— se ha optado por limpiar la base de datos cada vez que se inicia la app y cargar un conjunto de películas por defecto.  
+Debido a que las imágenes añadidas no se guardaban bien entre ejecuciones y luego no aparecían asignadas a sus películas correspondientes, se ha optado por limpiar la base de datos cada vez que se inicia la app y cargar un conjunto de películas por defecto.  
 Por este motivo, la aplicación no mantiene los datos entre ejecuciones y su uso es principalmente demostrativo y académico.
 
 ---
@@ -44,7 +44,7 @@ La aplicación está organizada en varias Activities:
 
 Además, se utilizan adapters personalizados para los ListView y clases modelo para representar los datos de la aplicación.
 
-Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla de estadísticas, ya que no se consideró necesario en ese caso.
+Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla de estadísticas, ya que no parecía necesario.
 
 ---
 
@@ -52,7 +52,7 @@ Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla d
 
 1. Al iniciar la aplicación se muestra la lista de películas.
 2. Desde el menú se puede navegar entre las distintas pantallas y cambiar el idioma de la aplicación.
-3. Desde el botón o el menú se puede añadir una nueva película.
+3. Desde el botón "Añadir Película" o el menú se puede añadir una nueva película. También se puede editar una película existente al pulsar sobre ella en la lista.
 4. Se rellenan los campos de la película y se guarda.
 5. Las películas pueden marcarse como favoritas directamente desde la lista.
 6. Desde el menú se puede acceder a la pantalla de estadísticas.
@@ -76,10 +76,6 @@ Además, la parte de modificar las películas también se me complico un poco, p
 - Traducir también los géneros y los nombres de las películas al cambiar el idioma.  
   Con los géneros hubiese sido mas fácil si se hubiese elegido el campo genero como habia hecho al inicio, mediante un Spinner. Pero al final quise meter un EditText porque no sabía muy bien cuántos generos poner y porque cambie los posters default en función del género para que se pudiera meter una imagen a elección del usuario. Como hice el tema de la traduccion al final, no me di cuenta.
 - Añadir la opción de eliminar películas.
-- No hay una carpeta con un archivo java aparte para la base de datos, intente hacerlo pero no me estaba saliendo bien y decidí dejar la base de datos en las Activities. 
+- No hay una carpeta con un archivo java aparte para la base de datos, intente hacerlo pero no me estaba saliendo bien y decidí dejar la base de datos en las Activities.
+- Hay algunas vistas que en los xml aparecen pefectamente colocadas, pero que luego en ejecución no se ven tan bien. Sucede algo parecido al cambiar el idioma, dado que los textos no se colocan del todo bien.
 
----
-
-## Autor
-
-Germiprogramer
