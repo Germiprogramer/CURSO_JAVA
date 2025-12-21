@@ -1,4 +1,4 @@
-# Peliculómmetro
+# Peliculómetro
 
 Para el primer ejercicio feedback de la asignatura se ha optado por realizar una aplicación que haga de gestor de películas. La razón por la que se ha optado por esta idea es porque resultaba sencillo pensar en implementar vistas requeridas como ImageView, CheckBox o ListView bajo este contexto.
 
@@ -17,10 +17,30 @@ Por este motivo, la aplicación no mantiene los datos entre ejecuciones y su uso
 
 La aplicación está organizada en varias Activities:
 
-- **MainActivity**: muestra la lista principal de películas. Al iniciar la aplicación se cargan tres películas por defecto y posteriormente se muestran las películas añadidas durante la ejecución.
+- **MainActivity**: Muestra la lista principal de películas. Al iniciar la aplicación se cargan tres películas por defecto y posteriormente se muestran las películas añadidas durante la ejecución.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
+  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180"
+    <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">>
+</p>
+
+
 - **CrearPeliculaActivity**: permite añadir o editar una película. 
   Además de los campos básicos (título, año y género), se puede seleccionar una imagen para el póster desde la galería del dispositivo.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
+  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
+  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
+</p>
+
 - **StatsActivity**: muestra estadísticas de la aplicación, como el número total de películas, el número de películas favoritas y el número de películas por género.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
+
+</p>
 
 Además, se utilizan adapters personalizados para los ListView y clases modelo para representar los datos de la aplicación.
 
