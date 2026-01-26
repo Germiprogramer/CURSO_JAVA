@@ -1,6 +1,6 @@
 # Peliculómetro
 
-Para el primer ejercicio feedback de la asignatura se ha optado por realizar una aplicación que haga de gestor de películas. La razón por la que se ha optado por esta idea es porque resultaba sencillo pensar en implementar vistas requeridas como ImageView, CheckBox o ListView bajo este contexto.
+Para el ejercicio final de la asignatura, se ha desarrollado una aplicación Android cuyo objetivo es gestionar y visualizar una lista de lugares de interés. La aplicación permite consultar información de distintas localizaciones, marcarlas como favoritas, aplicar filtros... entre otras opciones.
 
 ---
 
@@ -15,9 +15,11 @@ Por este motivo, la aplicación no mantiene los datos entre ejecuciones y su uso
 
 ## Estructura de la aplicación
 
+**Activities**
+
 La aplicación está organizada en varias Activities:
 
-- **MainActivity**: Muestra la lista principal de películas. Al iniciar la aplicación se cargan tres películas por defecto y posteriormente se muestran las películas añadidas durante la ejecución.
+- **MainActivity**: Muestra la lista principal de lugares. Al iniciar la aplicación se cargan una serie de lugares por defecto en un RecyclerView, aunque también se puede pulsar un botón para añadir o eliminar una serie de lugares extra de forma asíncrona. Cada lugar tiene un botón asociado que al pulsarlo te lleva a una actividad con mayor información. Los luagres se pueden marcar como favoritos, y filtrar de esta forma o también por tipo. Por último, en esta pantalla también hay un botón para lanzar una notificación.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
@@ -26,8 +28,58 @@ La aplicación está organizada en varias Activities:
 </p>
 
 
-- **CrearPeliculaActivity**: permite añadir o editar una película. 
-  Además de los campos básicos (título, año y género), se puede seleccionar una imagen para el póster desde la galería del dispositivo.
+- **DetailActivity**: Una pantalla para la información del lugar elegido en exclusiva. Contiene un mapa con la ubicación del lugar y la ubicación del usuario.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
+  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
+  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
+</p>
+
+**Fragments**
+
+- **MapFragment**: Contiene el mapa de Google Maps y las funciones asociadas a este. Permite seleccionar puntos sobre el mapa y ver los marcadores.
+
+## Almacenamiento de datos
+
+El sistema de almacenamiento de datos ha sido desarrollado mediante Room. Su implementación y su interacción con las activities se divide en varias clases.
+
+- **PlaceEntity**: Modelo de datos que representa un lugar y que se utiliza como entidad de Room.
+- **PlacesRoomManager**: Encapsula el acceso a la base de datos Room desde las activities, ofreciendo las funciones necesarias para interactuar con la BD.
+- **PlacesAdapter**: Adapter personalizado para el RecyclerView, encargado de enlazar los datos con las vistas.
+- **PrefsManager**: Clase para gestionar las preferencias (mostrar determinados lugares) mediante SharedPreferences. Hay dos preferencias: mostrar solo favoritos y tipo de lugar. Estas preferencias se leen al iniciar la aplicación y se pueden cambiar desde un Checkbox y un Spinner.
+
+## Trabajo en segundo plano
+
+Para simular la carga de datos sin bloquear la interfaz, se emplea un ExecutorService, ejecutando las operaciones en segundo plano. 
+La actualización de la UI tras la carga se realiza mediante un Handler asociado al hilo principal.
+
+Durante este proceso se muestra un ProgressBar giratorio (me gustaba más que la barra) que hace la impresión de actualizar durante un par de segundos. Al finalizar, se refresca el RecyclerView, añadiendo o quitando los datos del .json extra.
+
+**Nota:**
+*En lugar de añadir progresivamente los datos cargados desde JSON a la base de datos Room, se optó por alternar la aparición(desaparición de un conjunto de datos al pulsar el botón de actualización. En la práctica, esto implica trabajar con dos fuentes de datos distintas.*
+
+*Aunque el enunciado indicaba que los datos debían añadirse a la base de datos, esta decisión se tomó porque durante las pruebas habría sido necesario añadir manualmente nuevos lugares en cada ejecución, lo que dificultaba el desarrollo y las pruebas continuas. Además, en la versión final de la aplicación, ese botón tendría un solo uso de todos modos. De este modo, se cumple el objetivo principal del trabajo en segundo plano aunque cambiando un poco el enfoque.*
+
+## Notificaciones
+
+Se ha implementado un sistema de notificaciones locales que cumple los siguientes requisitos:
+
+- Creación de un NotificationChannel para dispositivos con Android 8.0 o superior.
+
+- Posibilidad de lanzar una notificación manualmente mediante un botón.
+
+- Implementación de una notificación programada una vez al día, mostrando un mensaje.
+
+Al pulsar una notificación, se abre la aplicación.
+
+## Análisis de rendimiento (Profiler)
+
+Se ha utilizado Android Profiler, concretamente el Memory Profiler, para analizar el uso de memoria de la aplicación.
+
+**Problema o riesgo detectado**
+
+Durante las pruebas se observó un uso elevado de memoria asociado a la carga de imágenes, especialmente reflejado en la cantidad de arrays de tipo byte[] y int[] en el heap.
+Esto supone un riesgo potencial si se utilizan imágenes grandes o numerosas.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
@@ -35,18 +87,10 @@ La aplicación está organizada en varias Activities:
   <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
 </p>
 
-- **StatsActivity**: muestra estadísticas de la aplicación, como el número total de películas, el número de películas favoritas y el número de películas por género.
+**Mejora aplicada**
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
-
-</p>
-
-Además, se utilizan adapters personalizados para los ListView y clases modelo para representar los datos de la aplicación.
-
-Todas las Activities tienen acceso a un menú de opciones, excepto la pantalla de estadísticas, ya que no parecía necesario.
-
----
+Como mejora, se han optimizado algunas imágenes convirtiéndolas a formato WebP y reduciendo su tamaño.
+Tras esta modificación, se observó una reducción significativa en el número de asignaciones y en el tamaño ocupado en memoria, mejorando el comportamiento general de la aplicación.
 
 ## Modo de uso
 
