@@ -82,44 +82,50 @@ Durante las pruebas se observó un uso elevado de memoria asociado a la carga de
 Esto supone un riesgo potencial si se utilizan imágenes grandes o numerosas.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/92caa958-f409-47fa-941c-41b5c0e2c493" width="180">
-  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
-  <img src="https://github.com/user-attachments/assets/2e248556-d5ed-4193-b52f-04808332dd0c" width="180">
+  <img src="https://github.com/user-attachments/assets/9335f1b3-c715-4ad1-834c-c1add5eea8f3" width="1600">
+  <img src="https://github.com/user-attachments/assets/2c543887-8f2f-4981-863a-1c73d3792128" width="1600">
 </p>
 
 **Mejora aplicada**
 
 Como mejora, se han optimizado algunas imágenes convirtiéndolas a formato WebP y reduciendo su tamaño.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9335f1b3-c715-4ad1-834c-c1add5eea8f3" width="1600">
+</p>
+
 Tras esta modificación, se observó una reducción significativa en el número de asignaciones y en el tamaño ocupado en memoria, mejorando el comportamiento general de la aplicación.
 
-## Modo de uso
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9335f1b3-c715-4ad1-834c-c1add5eea8f3" width="1600">
+  <img src="https://github.com/user-attachments/assets/2c543887-8f2f-4981-863a-1c73d3792128" width="1600">
+  <img src="https://github.com/user-attachments/assets/2c543887-8f2f-4981-863a-1c73d3792128" width="1600">
+</p>
 
-1. Al iniciar la aplicación se muestra la lista de películas.
-2. Desde el menú se puede navegar entre las distintas pantallas y cambiar el idioma de la aplicación.
-3. Desde el botón "Añadir Película" o el menú se puede añadir una nueva película. También se puede editar una película existente al pulsar sobre ella en la lista.
-4. Se rellenan los campos de la película y se guarda.
-5. Las películas pueden marcarse como favoritas directamente desde la lista.
-6. Desde el menú se puede acceder a la pantalla de estadísticas.
-7. El menú también permite acceder a la información de “Acerca de”.
+## Traducción
+
+La aplicación permite cambiar el idioma entre español e inglés. Uno de los principales problemas surgió al intentar traducir textos almacenados en la base de datos. Inicialmente se intentó trabajar con referencias a recursos XML (strings.xml), pero esto generó errores relacionados con el Context y su disponibilidad en capas como Room. Los errores tampoco se consiguieron solucionar tras migrar a archivos .json los distintos places.
+
+Finalmente, se optó por almacenar directamente los textos como String en la base de datos, priorizando la estabilidad y simplicidad de la aplicación frente a una solución más compleja.
 
 ---
 
 ## Partes que me han resultado más difíciles
 
-Una de las partes que más me costó fue el tema del cambio de idioma. El problema estaba en que el idioma por defecto de la aplicación era inglés y por lo que cuando intentaba hacer un cambio a la traducción inglesa de Reino Unido (poniendo solo "en", el sistema pensaba que estaba solicitando el Locale default.
+- Problemas con la traducción de datos almacenados en Room.
 
-Otra de las partes más complicadas fue la implementación de los adapters, ya que al principio resultaba difícil entender cómo se relacionaban los datos con las vistas del ListView. Sin embargo, parecían necesarios para que el ListView quedase bien.
+- Errores de esquema al modificar la estructura de la base de datos durante el desarrollo.
 
-Además, la parte de modificar las películas también se me complico un poco, porque no me pillaba bien el peliculaId y no salía la pelicula a modificar, sino te llevaba a la pamntalla para crear una nueva.
+- Dificultades iniciales con la configuración de notificaciones y canales.
+
+- Se mecomplicó un poco la aparición y desaparición del fragmentMap con la ubicación del usuario.
+
+- Integración correcta del Adapter con múltiples listeners.
 
 ---
 
 ## Posibles mejoras
 
-- Mantener los datos entre ejecuciones de la aplicación.
-- Traducir también los géneros y los nombres de las películas al cambiar el idioma.  
-  Con los géneros hubiese sido mas fácil si se hubiese elegido el campo genero como habia hecho al inicio, mediante un Spinner. Pero al final quise meter un EditText porque no sabía muy bien cuántos generos poner y porque cambie los posters default en función del género para que se pudiera meter una imagen a elección del usuario. Como hice el tema de la traduccion al final, no me di cuenta.
-- Añadir la opción de eliminar películas.
-- No hay una carpeta con un archivo java aparte para la base de datos, intente hacerlo pero no me estaba saliendo bien y decidí dejar la base de datos en las Activities.
-- Hay algunas vistas que en los xml aparecen pefectamente colocadas, pero que luego en ejecución no se ven tan bien. Sucede algo parecido al cambiar el idioma, dado que los textos no se colocan del todo bien.
-
+- Poder añadir o eliminar lugares desde la app.
+- Mejorar la traducción de los elementos place.
+- Hay algunas vistas que en los xml aparecen pefectamente colocadas, pero que luego en ejecución no se ven tan bien. Me sucede en todos los trabajos, en el emulador del ordenador está genial pero en el teléfono móvil donde pruebo no.
