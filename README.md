@@ -1,4 +1,4 @@
-# Peliculómetro
+# Lugares
 
 Para el ejercicio final de la asignatura, se ha desarrollado una aplicación Android cuyo objetivo es gestionar y visualizar una lista de lugares de interés. La aplicación permite consultar información de distintas localizaciones, marcarlas como favoritas, aplicar filtros... entre otras opciones.
 
